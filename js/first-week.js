@@ -537,3 +537,5 @@ function checkForSpam(message) {
 
   return result;
 }
+//  extra
+console.log(0 || ('0' && {}));
