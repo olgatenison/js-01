@@ -98,9 +98,7 @@ function splitMessage(message, delimiter) {
 }
 
 // 11.Сервісу гравірування прикрас потрібна функція, яка б автоматично рахувала ціну гравірування, залежно від кількості слів і ціни за слово.
-
 // Оголошена функція calculateEngravingPrice(message, pricePerWord). Ця функція приймає рядок, що складається зі слів, розділених лише пробілами (параметр message) та ціну гравірування одного слова (параметр pricePerWord).
-
 // Напиши тіло функції, щоб вона повертала загальну вартість гравірування усіх слів в рядку.
 
 function calculateEngravingPrice(message, pricePerWord) {
@@ -118,14 +116,48 @@ function makeStringFromArray(array, delimiter) {
 }
 
 // 13.Термін slug - це людино-зрозумілий унікальний ідентифікатор, який використовується у веб-розробці для створення читабельних URL-адрес.
-
 // Наприклад, замість того, щоб користувач побачив в адресному рядку mysite.com/posts/1q8fh74tx, можна зробити slug з назви статті. В результаті адреса буде приємнішою для сприйняття: mysite.com/posts/arrays-for-begginers.
 
 // Увага
 // Slug - це завжди рядок у нижньому регістрі, слова якого розділені тире.
-
 // Напиши функцію slugify(title), яка приймає заголовок статті, параметр title, і повертає slug, створений з цього рядка.
 
 // Значенням параметра title будуть рядки, слова яких розділені лише пробілами
 // Усі символи slug повинні бути у нижньому регістрі
 // Всі слова slug повинні бути розділені тире
+
+function slugify(title) {
+  return title.toLowerCase().split(' ').join('-');
+}
+
+// 14.Доповни код таким чином, щоб змінні містили часткові копії вихідного масиву fruits.
+// firstTwoEls - масив із перших двох елементів
+// nonExtremeEls - масив з усіх елементів, крім першого та останнього
+// lastThreeEls - масив із трьох останніх елементів
+
+const fruits = ['apple', 'plum', 'pear', 'orange', 'banana'];
+const firstTwoEls = fruits.slice(0, 2);
+const nonExtremeEls = fruits.slice(1, 4);
+const lastThreeEls = fruits.slice(2);
+
+// 15.Доповни код таким чином, щоб у змінній allClients утворився масив усіх елементів масивів oldClients і newClients.const oldClients = ['Mango', 'Ajax', 'Poly', 'Kiwi'];
+
+const newClients = ['Peach', 'Houston'];
+const allClients = oldClients.concat(newClients);
+
+// 16.Напиши функцію makeArray(firstArray, secondArray, maxLength) для створення нового масиву з усіма елементами двох вихідних firstArray і secondArray. Параметр maxLength містить максимально допустиму довжину нового масиву.
+// Якщо кількість елементів нового масиву більша за maxLength, функція повинна повернути копію масиву довжиною maxLength елементів. В іншому випадку функція повинна повернути новий масив повністю.
+
+function makeArray(firstArray, secondArray, maxLength) {
+  let arr = firstArray.concat(secondArray);
+
+  let newArr;
+  if (arr.length >= maxLength) {
+    newArr = arr.slice(0, maxLength);
+  } else {
+    newArr = arr;
+  }
+  return newArr;
+}
+
+// 17.Доповни цикл for таким чином, щоб він логував всі цілі числа в діапазоні від start до end включно.
