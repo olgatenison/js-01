@@ -51,7 +51,7 @@ function checkStorage(available, ordered) {
 
 // 4.Оголоси змінну fruits і присвой їй масив фруктів - рядків "apple", "plum", "pear" і "orange".
 
-const fruits = ['apple', 'plum', 'pear', 'orange'];
+// const fruits = ['apple', 'plum', 'pear', 'orange'];
 
 // 5.Оголоси три змінні і присвой кожній з них значення, використовуючи нотацію квадратних дужок.
 
@@ -161,3 +161,61 @@ function makeArray(firstArray, secondArray, maxLength) {
 }
 
 // 17.Доповни цикл for таким чином, щоб він логував всі цілі числа в діапазоні від start до end включно.
+
+const start = 3;
+const end = 7;
+
+for (let i = start; i <= end; i += 1) {
+  // Change this line
+  console.log(i);
+}
+
+// 18.Напиши функцію calculateTotal(number), яка приймає ціле число (параметр number) і повертає суму всіх цілих чисел від одиниці і до цього числа. Наприклад, якщо number дорівнює 3, то сума - це 1 + 2 + 3, тобто 6.
+
+function calculateTotal(number) {
+  let result = 0;
+  for (let i = 0; i <= number; i += 1) {
+    result += i;
+  }
+  return result;
+}
+// Або ж можна використовувати формулу для обчислення суми арифметичної прогресії:
+
+function calculateTotalSecond(number) {
+  return (number * (number + 1)) / 2;
+}
+
+// 19.Доповни код циклу for таким чином, щоб він послідовно логував усі елементи масиву fruits.
+
+const fruits = ['apple', 'plum', 'pear', 'orange'];
+
+for (let i = 0; i < fruits.length; i += 1) {
+  const fruit = fruits[i];
+  console.log(fruit);
+}
+
+// 20.Напиши функцію calculateTotalPrice(order), яка приймає один параметр order - масив чисел, і обчислює загальну суму його елементів. Загальна сума елементів повинна зберігатися у змінній total, яка повертається як результат роботи функції.
+
+function calculateTotalPrice(order) {
+  let total = 0;
+  for (let i = 0; i < order.length; i += 1) {
+    total += order[i];
+  }
+  return total;
+}
+
+// 21.Напиши функцію findLongestWord(string), яка приймає довільний рядок, що складається тільки зі слів, розділених пробілом (параметр string), і повертає найдовше слово в цьому рядку.
+
+function findLongestWord(string) {
+  let words = string.split(' ');
+
+  let longestWord = '';
+  for (let i = 0; i < words.length; i++) {
+    if (words[i].length > longestWord.length) {
+      longestWord = words[i];
+    }
+  }
+  return longestWord;
+}
+
+findLongestWord('The quick brown fox jumped over the lazy dog');
