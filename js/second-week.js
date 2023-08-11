@@ -160,6 +160,13 @@ function makeArray(firstArray, secondArray, maxLength) {
   return newArr;
 }
 
+//or
+
+function makeArray(firstArray, secondArray, maxLength) {
+  let arr = firstArray.concat(secondArray);
+  return arr.length >= maxLength ? arr.slice(0, maxLength) : arr;
+}
+
 // 17.Доповни цикл for таким чином, щоб він логував всі цілі числа в діапазоні від start до end включно.
 
 const start = 3;
@@ -219,3 +226,146 @@ function findLongestWord(string) {
 }
 
 findLongestWord('The quick brown fox jumped over the lazy dog');
+
+// 22.Доповни код функції createArrayOfNumbers(min, max) таким чином, щоб вона повертала масив усіх цілих чисел від значення min до max.
+
+function createArrayOfNumbers(min, max) {
+  const numbers = [];
+  for (let i = min; i <= max; i++) {
+    numbers.push(i);
+  }
+  return numbers;
+}
+
+// 23.Напиши функцію filterArray(numbers, value), яка приймає масив чисел (параметр numbers) і повертає новий масив, в якому будуть тільки ті елементи масиву numbers, які більші за значення параметра value (число).
+
+function filterArray(numbers, value) {
+  let result = [];
+  for (let i = 0; i <= numbers.length; i++) {
+    if (numbers[i] > value) {
+      result.push(numbers[i]);
+    }
+  }
+  return result;
+}
+
+// 24.Функція checkFruit(fruit) приймає рядок з назвою фрукта (параметр fruit), і перевіряє, чи присутній такий фрукт в масиві fruits.
+// Доповни код функції таким чином, що якщо:
+// фрукт присутній в масиві, то функція повертає true;
+// фрукт відсутній в масиві, то функція повертає false.
+
+function checkFruit(fruit) {
+  const fruits = ['apple', 'plum', 'pear', 'orange'];
+  return fruits.includes(fruit);
+}
+
+// 25.Спільними елементами масивів називають ті елементи, які присутні у всіх масивах.
+// Наприклад, у двох масивах [1, 3, 5] і [0, 8, 5, 3] спільними будуть числа 3 і 5, оскільки вони присутні в обох вихідних масивах. А числа 0, 1 і 8 присутні тільки в одному з масивів.
+// Напиши функцію getCommonElements(array1, array2), яка отримує два масиви довільної довжини в параметри array1 і array2, і повертає новий масив, що складається з тих елементів, які присутні в обох вихідних масивах.
+
+function getCommonElements(array1, array2) {
+  const commonElements = [];
+
+  for (let i = 0; i < array1.length; i++) {
+    if (array2.includes(array1[i])) {
+      commonElements.push(array1[i]);
+    }
+  }
+
+  return commonElements;
+}
+
+// 26.Виконай рефакторинг коду функції calculateTotalPrice(order), замінивши цикл for на for...of.
+
+function calculateTotalPrice(order) {
+  let total = 0;
+  for (const variable of order) {
+    total += variable;
+  }
+  return total;
+}
+
+// 27.Виконай рефакторинг функції filterArray(numbers, value), замінивши цикл for на for...of.
+
+function filterArray(numbers, value) {
+  const filteredNumbers = [];
+  for (const num of numbers) {
+    if (num > value) {
+      filteredNumbers.push(num);
+    }
+  }
+  return filteredNumbers;
+}
+
+// 28.Доповни вираз остачі від ділення таким чином, щоб код проходив тести.
+
+const a = 3 % 3; // 3 % 3 = 0
+const b = 4 % 3; // 4 % 3 = 1
+const c = 11 % 8; // 11 % 8 = 3
+const d = 12 % 7; // 12 % 7 = 5
+const e = 8 % 3; // 8 % 3 = 2
+
+// 29.Напиши функцію getEvenNumbers(start, end), яка повертає масив усіх парних чисел від start до end. Парним вважається число, яке ділиться на 2 без остачі (10 % 2 === 0).
+
+function getEvenNumbers(start, end) {
+  let result = [];
+
+  for (let i = start; i <= end; i++) {
+    if (i % 2 === 0) {
+      result.push(i);
+    }
+  }
+
+  return result;
+}
+
+//or better
+
+function getEvenNumbers(start, end) {
+  let result = [];
+  if (start % 2 !== 0) {
+    start++;
+  }
+  for (let i = start; i <= end; i += 2) {
+    result.push(i);
+  }
+  return result;
+}
+
+// 30.Доповни код таким чином, щоб у змінну number записувалося перше число від start до end, яке ділиться на 5 без остачі.
+
+const start = 6;
+const end = 27;
+let number;
+
+for (let i = start; i < end; i += 1) {
+  if (i % 5 === 0) {
+    number = i;
+    break;
+  }
+}
+
+// 31Виконай рефакторинг функції findNumber(start, end, divisor) таким чином, щоб вона:
+// повертала перше число від start до end, яке ділиться на divisor без остачі
+// не використала оператор break
+// не використала змінну number
+
+function findNumber(start, end, divisor) {
+  for (let i = start; i < end; i += 1) {
+    if (i % divisor === 0) {
+      return i;
+    }
+  }
+}
+
+// 32.Напиши функцію includes(array, value), яка робить те саме, що і метод масиву масив.includes(значення) - перевіряє, чи присутнє в масиві array значення value, повертаючи true, якщо присутнє, і false в іншому випадку.
+// При виконанні цього завдання в тілі функції includes() не можна використовувати метод масив.includes(значення).
+
+function includes(array, value) {
+  for (let item of array) {
+    if (item === value) {
+      return true;
+    }
+  }
+  return false;
+}
