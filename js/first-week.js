@@ -537,5 +537,24 @@ function checkForSpam(message) {
 
   return result;
 }
+
 //  extra
 console.log(0 || ('0' && {}));
+console.log(false && 1 && [])
+console.log(' ' && true && 5)
+console.log(null == undefined) 
+console.log(null === undefined)
+
+0==false
+0 === false
+1=='1'
+1 ==='1'
+null == undefined
+null === undefined
+'0'===False
+'0'==false
+[]==[]
+[]===[]
+{}=={}
+{}==={}
+'1'==false
