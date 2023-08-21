@@ -478,3 +478,199 @@ function calculateMeanTemperature(forecast) {
 
   return (todayLow + todayHigh + tomorrowLow + tomorrowHigh) / 4;
 }
+// 27. У змінній scores зберігається масив результатів тестування. Використовуючи розподіл і методи Math.max() і Math.min(), доповни код таким чином, щоб у змінній bestScore був найвищий бал, а у worstScore - найнижчий.
+
+const scores = [89, 64, 42, 17, 93, 51, 26];
+
+const bestScore = Math.max(...scores);
+const worstScore = Math.min(...scores);
+
+// 28.У змінних firstGroupScores, secondGroupScores і thirdGroupScores зберігаються результати тестування окремих груп. Використовуючи розподіл, доповни код таким чином, щоб:
+
+// У змінній allScores зберігався масив всіх результатів від першої до третьої групи.
+// У змінній bestScore був найвищий загальний бал.
+// У змінній worstScore був найнижчий загальний бал.
+
+const firstGroupScores = [64, 42, 93];
+const secondGroupScores = [89, 14, 51, 26];
+const thirdGroupScores = [29, 47, 18, 97, 81];
+
+const allScores = [
+  ...firstGroupScores,
+  ...secondGroupScores,
+  ...thirdGroupScores,
+];
+const bestScore = Math.max(...allScores);
+const worstScore = Math.min(...allScores);
+
+// 29.В конструкторі можна створювати нові тести, для яких є налаштування за замовчуванням, які зберігаються у змінній defaultSettings. Під час створення тесту, усі або частину налаштувань можна перевизначити, вони зберігаються у змінній overrideSettings.
+// Для того щоб отримати фінальні налаштування тесту, необхідно взяти налаштування за замовчуванням і поверх них застосувати перевизначені налаштування. Доповни код таким чином, щоб у змінній finalSettings утворився об'єкт фінальних налаштувань тесту.
+
+const defaultSettings = {
+  theme: 'light',
+  public: true,
+  withPassword: false,
+  minNumberOfQuestions: 10,
+  timePerQuestion: 60,
+};
+const overrideSettings = {
+  public: false,
+  withPassword: true,
+  timePerQuestion: 30,
+};
+// Change code below this line
+const finalSettings = { ...defaultSettings, ...overrideSettings };
+
+// 30.Напиши функцію makeTask(data) яка приймає один параметр data - об'єкт з наступними властивостями.
+
+// text - текст завдання.
+// category - категорія завдання.
+// priority - пріоритет завдання.
+// Функція повинна створити і повернути новий об'єкт завдання, не змінюючи напряму параметр data. У новому об'єкті повинна бути властивість completed, значення якої зберігається в однойменній локальній змінній.
+
+// В параметрі data гарантовано буде тільки властивість text, а інші дві, category і priority, можуть бути відсутніми. Тоді, в новому об'єкті завдання, у властивостях category і priority повинні бути значення за замовчуванням, що зберігаються в однойменних локальних змінних.
+
+function makeTask(data) {
+  const completed = false;
+  const category = 'General';
+  const priority = 'Normal';
+
+  // Створюємо новий об'єкт завдання з використанням властивостей з data та додаванням інших властивостей за замовчуванням
+  const task = {
+    text: data.text,
+    category: data.category || category, // Використовуємо значення за замовчуванням, якщо category відсутній в data
+    priority: data.priority || priority, // Використовуємо значення за замовчуванням, якщо priority відсутній в data
+    completed: completed,
+  };
+
+  return task;
+}
+
+// 31.Використовуючи операцію rest, доповни код функції add() таким чином, щоб вона приймала будь-яку кількість аргументів, рахувала і повертала їх суму.
+
+function add(...args) {
+  let total = 0;
+  for (let i of args) {
+    total += i;
+  }
+  return total;
+}
+
+// function add(...args) {
+//     return args.reduce((total, current) => total + current, 0);
+//   }
+
+// 32.Функція addOverNum() рахує суму всіх аргументів. Зміни параметри і тіло функції addOverNum() таким чином, щоб вона рахувала суму тільки тих аргументів, які більші за задане число. Це число повинно бути першим параметром функції.
+
+function addOverNum(num, ...args) {
+  let total = 0;
+
+  for (const arg of args) {
+    if (arg > num) {
+      total += arg;
+    }
+  }
+  return total;
+}
+
+// 33.Функція findMatches() приймає довільну кількість аргументів. Першим аргументом завжди буде масив чисел, а решта аргументів будуть просто числами.
+
+// Доповни код функції таким чином, щоб вона повертала новий масив matches, в якому будуть тільки ті аргументи, починаючи з другого, які є в масиві першого аргументу.
+
+// Наприклад, findMatches([1, 2, 3, 4, 5], 1, 8, 2, 7) повинна повернути масив [1, 2], тому що тільки вони є в масиві першого аргументу.
+
+function findMatches(...args) {
+  const matches = []; // Don't change this line
+  // Отримуємо перший аргумент як масив чисел
+  let firstArray = args[0];
+
+  for (let i = 1; i < args.length; i += 1) {
+    // Поточний аргумент - число для перевірки
+    const num = args[i];
+    if (firstArray.includes(num)) {
+      matches.push(num);
+    }
+  }
+  return matches;
+}
+
+// 34.Додай об'єкту bookShelf ще два методи, які поки що будуть повертати просто рядки за аналогією з getBooks() і addBook(bookName).
+
+// Метод removeBook(bookName) буде видаляти книгу за назвою. Повертає рядок "Deleting book <назва книги>", де <назва книги> - це значення параметра bookName.
+
+// Метод updateBook(oldName, newName) буде оновлювати назву книги на нову. Повертає рядок "Updating book <стара назва> to <нова назва>", де <стара назва> і <нова назва> - це значення параметрів oldName і newName відповідно.
+
+const bookShelf = {
+  books: ['The last kingdom', 'The guardian of dreams'],
+  getBooks() {
+    return 'Returning all books';
+  },
+  addBook(bookName) {
+    return `Adding book ${bookName}`;
+  },
+  removeBook(bookName) {
+    return `Deleting book ${bookName}`;
+  },
+  updateBook(oldName, newName) {
+    return `Updating book ${oldName} to ${newName}`;
+  },
+};
+
+// 35.Доповни метод updateBook(oldName, newName) таким чином, щоб він змінював назву книги з oldName на newName у властивості books. Використовуй indexOf() для того, щоб знайти потрібний елемент масиву, і splice() для того, щоб замінити цей елемент.
+
+const bookShelf = {
+  books: ['The last kingdom', 'Haze', 'The guardian of dreams'],
+  updateBook(oldName, newName) {
+    let index = this.books.indexOf(oldName);
+    if (index !== -1) {
+      this.books.splice(index, 1, newName);
+    }
+  },
+};
+
+// 36.До нас звернулася власниця крамниці зілля «У старої жаби» і замовила програму для ведення інвентарю - додавання, видалення, пошуку та оновлення зілля. Додай об'єкту atTheOldToad властивість potions, значенням якої зроби порожній масив.
+
+const atTheOldToad = {
+  potions: [],
+};
+// 37.Додай об'єкту atTheOldToad метод getPotions(), який просто повертає значення властивості potions.
+
+const atTheOldToad = {
+  potions: ['Speed potion', 'Dragon breath', 'Stone skin'],
+  getPotions() {
+    return this.potions;
+  },
+};
+
+// 38.Доповни метод addPotion(potionName) таким чином, щоб він додавав зілля potionName в кінець масиву зілля у властивості potions.
+
+const atTheOldToad = {
+  potions: ['Speed potion', 'Dragon breath', 'Stone skin'],
+  addPotion(potionName) {
+    this.potions.push(potionName);
+  },
+};
+
+// 39.Доповни метод removePotion(potionName) таким чином, щоб він видаляв зілля potionName з масиву зілля у властивості potions.
+
+const atTheOldToad = {
+  potions: ['Speed potion', 'Dragon breath', 'Stone skin'],
+  removePotion(potionName) {
+    let index = this.potions.indexOf(potionName);
+    if (index !== -1) {
+      this.potions.splice(index, 1);
+    }
+  },
+};
+
+// 40.Доповни метод updatePotionName(oldName, newName) таким чином, щоб він оновлював назву зілля з oldName на newName в масиві зілля у властивості potions.
+
+const atTheOldToad = {
+  potions: ['Speed potion', 'Dragon breath', 'Stone skin'],
+  updatePotionName(oldName, newName) {
+    const index = this.potions.indexOf(oldName);
+    if (index !== -1) {
+      this.potions[index] = newName;
+    }
+  },
+};

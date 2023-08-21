@@ -1,76 +1,51 @@
-// 27. У змінній scores зберігається масив результатів тестування. Використовуючи розподіл і методи Math.max() і Math.min(), доповни код таким чином, щоб у змінній bestScore був найвищий бал, а у worstScore - найнижчий.
+// 40.Замовниця хоче, щоб кожне зілля було представлено не тільки ім'ям, але й ціною, а в майбутньому, можливо, й іншими характеристиками. Тому зараз у властивості potions буде зберігатися масив об'єктів з наступними властивостями.
 
-const scores = [89, 64, 42, 17, 93, 51, 26];
+// {
+//   name: "Dragon breath",
+//   price: 700
+// }
+// Виконай рефакторинг методів об'єкта atTheOldToad таким чином, щоб вони працювали не з масивом рядків, а з масивом об'єктів.
 
-const bestScore = Math.max(...scores);
-const worstScore = Math.min(...scores);
+// getPotions() - метод для отримання всього зілля. Повертає значення властивості potions.
+// addPotion(newPotion) - додає зілля newPotion (вже об'єкт) в масив у властивості potions, але тільки, якщо такого зілля ще немає в інвентарі. В іншому випадку повертається рядок.
+// removePotion(potionName) - видаляє об'єкт зілля з ім'ям potionName з масиву у властивості potions.
+// updatePotionName(oldName, newName) - оновлює властивість name об'єкта-зілля з назвою oldName на newName в масиві potions.
 
-// 28.У змінних firstGroupScores, secondGroupScores і thirdGroupScores зберігаються результати тестування окремих груп. Використовуючи розподіл, доповни код таким чином, щоб:
-
-// У змінній allScores зберігався масив всіх результатів від першої до третьої групи.
-// У змінній bestScore був найвищий загальний бал.
-// У змінній worstScore був найнижчий загальний бал.
-
-const firstGroupScores = [64, 42, 93];
-const secondGroupScores = [89, 14, 51, 26];
-const thirdGroupScores = [29, 47, 18, 97, 81];
-
-const allScores = [
-  ...firstGroupScores,
-  ...secondGroupScores,
-  ...thirdGroupScores,
-];
-const bestScore = Math.max(...allScores);
-const worstScore = Math.min(...allScores);
-
-// 29.В конструкторі можна створювати нові тести, для яких є налаштування за замовчуванням, які зберігаються у змінній defaultSettings. Під час створення тесту, усі або частину налаштувань можна перевизначити, вони зберігаються у змінній overrideSettings.
-// Для того щоб отримати фінальні налаштування тесту, необхідно взяти налаштування за замовчуванням і поверх них застосувати перевизначені налаштування. Доповни код таким чином, щоб у змінній finalSettings утворився об'єкт фінальних налаштувань тесту.
-
-const defaultSettings = {
-  theme: 'light',
-  public: true,
-  withPassword: false,
-  minNumberOfQuestions: 10,
-  timePerQuestion: 60,
-};
-const overrideSettings = {
-  public: false,
-  withPassword: true,
-  timePerQuestion: 30,
-};
-// Change code below this line
-const finalSettings = { ...defaultSettings, ...overrideSettings };
-
-// 30.Напиши функцію makeTask(data) яка приймає один параметр data - об'єкт з наступними властивостями.
-
-// text - текст завдання.
-// category - категорія завдання.
-// priority - пріоритет завдання.
-// Функція повинна створити і повернути новий об'єкт завдання, не змінюючи напряму параметр data. У новому об'єкті повинна бути властивість completed, значення якої зберігається в однойменній локальній змінній.
-
-// В параметрі data гарантовано буде тільки властивість text, а інші дві, category і priority, можуть бути відсутніми. Тоді, в новому об'єкті завдання, у властивостях category і priority повинні бути значення за замовчуванням, що зберігаються в однойменних локальних змінних.
-
-function makeTask(data) {
-  const completed = false;
-  const category = 'General';
-  const priority = 'Normal';
+const atTheOldToad = {
+  potions: [
+    { name: 'Speed potion', price: 460 },
+    { name: 'Dragon breath', price: 780 },
+    { name: 'Stone skin', price: 520 },
+  ],
   // Change code below this line
+  getPotions() {
+    return this.potions;
+  },
+  addPotion(newPotion) {
+    const potionNames = this.potions.map(potion => potion.name);
+    if (this.potions.includes(newPotion)) {
+      return `Error! Potion ${newPotion} is already in your inventory!`;
+    }
 
+    this.potions.push(newPotion);
+  },
+  removePotion(potionName) {
+    const potionIndex = this.potions.indexOf(potionName);
+
+    if (potionIndex === -1) {
+      return `Potion ${potionName} is not in inventory!`;
+    }
+
+    this.potions.splice(potionIndex, 1);
+  },
+  updatePotionName(oldName, newName) {
+    const potionIndex = this.potions.indexOf(oldName);
+
+    if (potionIndex === -1) {
+      return `Potion ${oldName} is not in inventory!`;
+    }
+
+    this.potions.splice(potionIndex, 1, newName);
+  },
   // Change code above this line
-}
-
-function makeTask(data) {
-  const completed = false;
-  const category = 'General';
-  const priority = 'Normal';
-
-  // Створюємо новий об'єкт завдання з використанням властивостей з data та додаванням інших властивостей за замовчуванням
-  const task = {
-    text: data.text,
-    category: data.category || category, // Використовуємо значення за замовчуванням, якщо category відсутній в data
-    priority: data.priority || priority, // Використовуємо значення за замовчуванням, якщо priority відсутній в data
-    completed: completed,
-  };
-
-  return task;
-}
+};

@@ -539,22 +539,23 @@ function checkForSpam(message) {
 }
 
 //  extra
-console.log(0 || ('0' && {}));
-console.log(false && 1 && [])
-console.log(' ' && true && 5)
-console.log(null == undefined) 
-console.log(null === undefined)
 
-0==false
-0 === false
-1=='1'
-1 ==='1'
-null == undefined
-null === undefined
-'0'===False
-'0'==false
-[]==[]
-[]===[]
-{}=={}
-{}==={}
-'1'==false
+console.log(0 || ('0' && {})); // {}
+console.log(false && 1 && []) //false
+console.log(' ' && true && 5) //5
+console.log(null == undefined) //true
+console.log(null === undefined) //false
+
+0==false //true
+0 === false //false
+1=='1' //true
+1 ==='1' //false
+null == undefined //true
+null === undefined //false
+'0'===false //false
+'0'==false //true
+[]==[]  //false
+[]===[] //false
+//{}=={} //error
+//{}==={} //error
+'1'==false //false
