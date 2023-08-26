@@ -34,3 +34,33 @@ makePizza('Royal Grand', function deliverPizza(pizzaName) {
 makePizza('Ultracheese', function eatPizza(pizzaName) {
   console.log(`Eating pizza ${pizzaName}.`);
 });
+
+// 4.Необхідно написати логіку обробки замовлення піци. Виконай рефакторинг методу order таким чином, щоб він приймав другим і третім параметром два колбеки onSuccess і onError.
+
+const pizzaPalace = {
+  pizzas: ['Ultracheese', 'Smoked', 'Four meats'],
+  order(pizzaName, onSuccess, onError) {
+    if (this.pizzas.includes(pizzaName)) {
+      return onSuccess(pizzaName);
+    } else {
+      return onError(
+        `There is no pizza with a name ${pizzaName} in the assortment.`,
+      );
+    }
+  },
+};
+
+// Callback for onSuccess
+function makePizza(pizzaName) {
+  return `Your order is accepted. Cooking pizza ${pizzaName}.`;
+}
+
+// Callback for onError
+function onOrderError(error) {
+  return `Error! ${error}`;
+}
+
+// Method calls with callbacks
+console.log(pizzaPalace.order('Smoked', makePizza, onOrderError));
+console.log(pizzaPalace.order('Four meats', makePizza, onOrderError));
+console.log(pizzaPalace.order('Big Mike', makePizza, onOrderError));
