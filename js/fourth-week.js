@@ -64,3 +64,18 @@ function onOrderError(error) {
 console.log(pizzaPalace.order('Smoked', makePizza, onOrderError));
 console.log(pizzaPalace.order('Four meats', makePizza, onOrderError));
 console.log(pizzaPalace.order('Big Mike', makePizza, onOrderError));
+
+//  5Функція calculateTotalPrice(orderedItems) приймає один параметр orderedItems - масив чисел, і розраховує загальну суму його елементів, яка зберігається у змінній totalPrice і повертається як результат роботи функції.
+
+//  Виконай рефакторинг функції таким чином, щоб замість циклу for, вона використовувала метод forEach.
+function calculateTotalPrice(orderedItems) {
+  let totalPrice = 0;
+  // Change code below this line
+
+  for (let i = 0; i < orderedItems.length; i += 1) {
+    totalPrice += orderedItems[i];
+  }
+
+  // Change code above this line
+  return totalPrice;
+}
