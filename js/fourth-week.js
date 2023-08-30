@@ -65,17 +65,50 @@ console.log(pizzaPalace.order('Smoked', makePizza, onOrderError));
 console.log(pizzaPalace.order('Four meats', makePizza, onOrderError));
 console.log(pizzaPalace.order('Big Mike', makePizza, onOrderError));
 
-//  5Функція calculateTotalPrice(orderedItems) приймає один параметр orderedItems - масив чисел, і розраховує загальну суму його елементів, яка зберігається у змінній totalPrice і повертається як результат роботи функції.
-
+//  5 Функція calculateTotalPrice(orderedItems) приймає один параметр orderedItems - масив чисел, і розраховує загальну суму його елементів, яка зберігається у змінній totalPrice і повертається як результат роботи функції.
 //  Виконай рефакторинг функції таким чином, щоб замість циклу for, вона використовувала метод forEach.
+
 function calculateTotalPrice(orderedItems) {
   let totalPrice = 0;
-  // Change code below this line
 
-  for (let i = 0; i < orderedItems.length; i += 1) {
-    totalPrice += orderedItems[i];
-  }
+  orderedItems.forEach(function (elem) {
+    totalPrice += elem;
+  });
 
-  // Change code above this line
   return totalPrice;
 }
+
+// 6 Функція filterArray(numbers, value) приймає масив чисел numbers і повертає новий масив, в якому будуть тільки ті елементи оригінального масиву, які більші за значення параметра value.
+// Виконай рефакторинг функції таким чином, щоб замість циклу for, вона використовувала метод forEach.
+
+function filterArray(numbers, value) {
+  const filteredNumbers = [];
+
+  numbers.forEach(function (elem) {
+    if (elem > value) {
+      filteredNumbers.push(elem);
+    }
+  });
+
+  return filteredNumbers;
+}
+
+// 7 Функція getCommonElements(firstArray, secondArray) приймає два масиви довільної довжини в параметри firstArray і secondArray, і повертає новий масив їхніх спільних елементів, тобто тих, які присутні в обох масивах.
+// Виконай рефакторинг функції таким чином, щоб замість циклу for, вона використовувала метод forEach.
+
+function getCommonElements(firstArray, secondArray) {
+  const commonElements = [];
+
+  firstArray.forEach(elem => {
+    if (secondArray.includes(elem)) {
+      commonElements.push(elem);
+    }
+  });
+
+  return commonElements;
+}
+//  8.Виконай рефакторинг функції calculateTotalPrice() таким чином, щоб вона була оголошена як стрілочна.
+
+const calculateTotalPrice = (quantity, pricePerItem) => {
+  return quantity * pricePerItem;
+};
