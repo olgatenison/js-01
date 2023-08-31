@@ -107,8 +107,13 @@ function getCommonElements(firstArray, secondArray) {
 
   return commonElements;
 }
+
 //  8.Виконай рефакторинг функції calculateTotalPrice() таким чином, щоб вона була оголошена як стрілочна.
 
 const calculateTotalPrice = (quantity, pricePerItem) => {
   return quantity * pricePerItem;
 };
+
+// 9 Виконай рефакторинг функції calculateTotalPrice() таким чином, щоб вона використовувала неявне повернення.
+
+const calculateTotalPrice = (quantity, pricePerItem) => quantity * pricePerItem;
