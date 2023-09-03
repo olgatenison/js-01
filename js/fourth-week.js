@@ -308,3 +308,317 @@ const getUsersWithAge = (users, minAge, maxAge) => {
 const getUsersWithFriend = (users, friendName) => {
   return users.filter(user => user.friends.includes(friendName));
 };
+
+// 25. Доповни функцію getFriends(users) таким чином, щоб вона повертала масив друзів всіх користувачів (властивість friends). У декількох користувачів можуть бути однакові друзі, зроби так, щоб масив, що повертається, не містив повторень.
+
+const getFriends = users => {
+  const all = users.flatMap(user => user.friends);
+  const uniqueFriends = all.filter((friend, i, arr) => {
+    return arr.indexOf(friend) === i;
+  });
+
+  return uniqueFriends;
+};
+
+// 26. Доповни функцію getActiveUsers(users) таким чином, щоб вона повертала масив активних користувачів, значення властивості isActive яких - true.
+const getActiveUsers = users => {
+  return users.filter(user => user.isActive === true);
+};
+
+// 27 Доповни функцію getInactiveUsers(users) таким чином, щоб вона повертала масив неактивних користувачів, значення властивості isActive яких - false.
+
+const getInactiveUsers = users => {
+  return users.filter(user => user.isActive === false);
+};
+
+// const getInactiveUsers = users => users.filter(user => !user.isActive);
+
+// 28 Використовуючи метод find(), доповни код таким чином, щоб:
+// У змінній bookWithTitle утворився об'єкт книги, назва якої (властивість title) збігається зі значенням змінної BOOK_TITLE.
+// У змінній bookByAuthor утворився об'єкт книги, автор якої (властивість author) збігається зі значенням змінної AUTHOR.
+
+const books = [
+  {
+    title: 'The Last Kingdom',
+    author: 'Bernard Cornwell',
+    rating: 8.38,
+  },
+  {
+    title: 'Beside Still Waters',
+    author: 'Robert Sheckley',
+    rating: 8.51,
+  },
+  {
+    title: 'The Dream of a Ridiculous Man',
+    author: 'Fyodor Dostoevsky',
+    rating: 7.75,
+  },
+  { title: 'Redder Than Blood', author: 'Tanith Lee', rating: 7.94 },
+];
+const BOOK_TITLE = 'The Dream of a Ridiculous Man';
+const AUTHOR = 'Robert Sheckley';
+
+const bookWithTitle = books.find(book => book.title === BOOK_TITLE);
+const bookByAuthor = books.find(book => book.author === AUTHOR);
+
+// 29 Доповни функцію getUserWithEmail(users, email) таким чином, щоб вона повертала об'єкт користувача, пошта якого (властивість email) збігається зі значенням параметра email.
+
+const getUserWithEmail = (users, email) => {
+  return users.find(user => user.email === email);
+};
+
+// 30 Використовуючи метод every(), доповни код таким чином, щоб:
+// У змінній eachElementInFirstIsEven був результат перевірки всіх елементів масиву firstArray на парність.
+// У змінній eachElementInFirstIsOdd був результат перевірки всіх елементів масиву firstArray на непарність.
+// У змінній eachElementInSecondIsEven був результат перевірки всіх елементів масиву secondArray на парність.
+// У змінній eachElementInSecondIsOdd був результат перевірки всіх елементів масиву secondArray на непарність.
+// У змінній eachElementInThirdIsEven був результат перевірки всіх елементів масиву thirdArray на парність.
+// У змінній eachElementInThirdIsOdd був результат перевірки всіх елементів масиву thirdArray на непарність.
+
+const firstArray = [26, 94, 36, 18];
+const secondArray = [17, 61, 23];
+const thirdArray = [17, 26, 94, 61, 36, 23, 18];
+
+const eachElementInFirstIsEven = firstArray.every(el => el % 2 === 0);
+const eachElementInFirstIsOdd = firstArray.every(el => el % 2 !== 0);
+
+const eachElementInSecondIsEven = secondArray.every(el => el % 2 === 0);
+const eachElementInSecondIsOdd = secondArray.every(el => el % 2 !== 0);
+
+const eachElementInThirdIsEven = thirdArray.every(el => el % 2 === 0);
+const eachElementInThirdIsOdd = thirdArray.every(el => el % 2 !== 0);
+
+// 31 Доповни функцію isEveryUserActive(users) таким чином, щоб вона перевіряла, чи всі користувачі зараз активні (властивість isActive) і повертала true або false.
+
+const isEveryUserActive = users => {
+  return users.every(user => user.isActive);
+};
+// const isEveryUserActive = users => {
+//   return users.every(user => user.isActive === true);
+// };
+
+// 32 Використовуючи метод some(), доповни код таким чином, щоб:
+
+// У змінній anyElementInFirstIsEven був результат перевірки наявності парних елементів в масиві firstArray.
+// У змінній anyElementInFirstIsOdd був результат перевірки наявності непарних елементів в масиві firstArray.
+// У змінній anyElementInSecondIsEven був результат перевірки наявності парних елементів в масиві secondArray.
+// У змінній anyElementInSecondIsOdd був результат перевірки наявності непарних елементів в масиві secondArray.
+// У змінній anyElementInThirdIsEven був результат перевірки наявності парних елементів в масиві thirdArray.
+// У змінній anyElementInThirdIsOdd був результат перевірки наявності непарних елементів в масиві thirdArray.
+
+const firstArray = [26, 94, 36, 18];
+const secondArray = [17, 61, 23];
+const thirdArray = [17, 26, 94, 61, 36, 23, 18];
+// Change below this line
+
+const anyElementInFirstIsEven = firstArray.some(el => el % 2 === 0);
+const anyElementInFirstIsOdd = firstArray.some(el => el % 2 !== 0);
+
+const anyElementInSecondIsEven = secondArray.some(el => el % 2 === 0);
+const anyElementInSecondIsOdd = secondArray.some(el => el % 2 !== 0);
+
+const anyElementInThirdIsEven = thirdArray.some(el => el % 2 === 0);
+const anyElementInThirdIsOdd = thirdArray.some(el => el % 2 !== 0);
+
+// 33 Доповни функцію isAnyUserActive(users) таким чином, щоб вона перевіряла наявність активних користувачів (властивість isActive) і повертала true або false.
+
+const isAnyUserActive = users => {
+  return users.some(user => user.isActive);
+};
+
+// 34 Ігровому сервісу необхідний функціонал підрахунку середнього часу, проведеного в іграх. Доповни код таким чином, щоб у змінній totalPlayTime вийшло загальний ігровий час з масиву playtimes.
+
+const players = {
+  mango: 1270,
+  poly: 468,
+  ajax: 710,
+  kiwi: 244,
+};
+const playtimes = Object.values(players); // [1270, 468, 710, 244]
+
+const totalPlayTime = playtimes.reduce((acc, num) => acc + num, 0);
+
+const averagePlayTime = totalPlayTime / playtimes.length;
+
+//  35 Нашому сервісу необхідно розрахувати середній час, проведений в одній грі для кожного гравця, і отримати загальну суму цих значень часу. Розрахувати час для кожного з гравців можна, розділивши його час (властивість playtime) на кількість ігор (властивість gamesPlayed).
+
+const players = [
+  { name: 'Mango', playtime: 1270, gamesPlayed: 4 },
+  { name: 'Poly', playtime: 469, gamesPlayed: 2 },
+  { name: 'Ajax', playtime: 690, gamesPlayed: 3 },
+  { name: 'Kiwi', playtime: 241, gamesPlayed: 1 },
+];
+
+const totalAveragePlaytimePerGame = players.reduce(
+  (total, player) => total + player.playtime / player.gamesPlayed,
+  0,
+);
+
+// 36 Доповни функцію calculateTotalBalance(users) таким чином, щоб вона рахувала і повертала суму всіх коштів (властивість balance), які зберігають користувачі з масиву users.
+
+const calculateTotalBalance = users => {
+  return users.reduce((total, user) => total + user.balance, 0);
+};
+
+// 37 Доповни функцію getTotalFriendCount(users) таким чином, щоб вона рахувала і повертала загальну кількість друзів (властивість friends) усіх користувачів з масиву users.
+
+const getTotalFriendCount = users => {
+  return users.reduce((total, user) => total + user.friends.length, 0);
+};
+
+// 38 Доповни код таким чином, щоб у змінній ascendingReleaseDates вийшла копія масиву releaseDates, відсортована за зростанням, а у змінній alphabeticalAuthors - копія масиву імен авторів authors, відсортована за алфавітом.
+
+const releaseDates = [2016, 1967, 2008, 1984, 1973, 2012, 1997];
+const authors = [
+  'Tanith Lee',
+  'Bernard Cornwell',
+  'Robert Sheckley',
+  'Fyodor Dostoevsky',
+];
+
+const ascendingReleaseDates = [...releaseDates].sort((a, b) => a - b);
+
+const alphabeticalAuthors = [...authors].sort();
+
+//  39 Онлайн бібіліотеці необхідно відображати книги, відсортовані за датою видання, за її зростанням або спаданням. Доповни код таким чином, щоб у змінній ascendingReleaseDates вийшла копія масиву releaseDates, відсортована за зростанням, а у змінній descendingReleaseDates - копія, відсортована за спаданням.
+
+const releaseDates = [2016, 1967, 2008, 1984, 1973, 2012, 1997];
+
+const ascendingReleaseDates = [...releaseDates].sort((a, b) => a - b);
+
+const descendingReleaseDates = [...releaseDates].sort((a, b) => b - a);
+
+//  40 Онлайн бібіліотеці необхідно відображати книги, відсортовані за автором, в алфавітному і зворотному алфавітному порядку. Доповни код таким чином, щоб у змінній authorsInAlphabetOrder вийшла копія масиву authors, відсортована за алфавітом, а у змінній authorsInReversedOrder - копія, відсортована у зворотному алфавітному порядку.
+
+const authors = [
+  'Tanith Lee',
+  'Bernard Cornwell',
+  'Robert Sheckley',
+  'Fyodor Dostoevsky',
+  'Howard Lovecraft',
+];
+
+const authorsInAlphabetOrder = [...authors].sort((a, b) => a.localeCompare(b));
+
+const authorsInReversedOrder = [...authors].sort((a, b) => b.localeCompare(a));
+
+// 41 Доповни код таким чином, щоб:
+
+// У змінній sortedByAuthorName вийшов масив книг, відсортований за ім'ям автора в алфавітному порядку.
+// У змінній sortedByReversedAuthorName вийшов масив книг, відсортований за ім'ям автора у зворотному алфавітному порядку.
+// У змінній sortedByAscendingRating вийшов масив книг, відсортований за зростанням рейтингу.
+// У змінній sortedByDescentingRating вийшов масив книг, відсортований за спаданням рейтингу.
+
+const books = [
+  {
+    title: 'The Last Kingdom',
+    author: 'Bernard Cornwell',
+    rating: 8.38,
+  },
+  {
+    title: 'Beside Still Waters',
+    author: 'Robert Sheckley',
+    rating: 8.51,
+  },
+  {
+    title: 'The Dream of a Ridiculous Man',
+    author: 'Fyodor Dostoevsky',
+    rating: 7.75,
+  },
+  { title: 'Redder Than Blood', author: 'Tanith Lee', rating: 7.94 },
+  { title: 'Enemy of God', author: 'Bernard Cornwell', rating: 8.67 },
+];
+
+const sortedByAuthorName = [...books].sort((a, b) =>
+  a.author.localeCompare(b.author),
+);
+
+const sortedByReversedAuthorName = [...books].sort((a, b) =>
+  b.author.localeCompare(a.author),
+);
+
+const sortedByAscendingRating = [...books].sort(
+  (a, b) => a.rating - b.rating, // Сортування за рейтингом як числа
+);
+
+const sortedByDescentingRating = [...books].sort(
+  (a, b) => b.rating - a.rating, // Сортування за рейтингом у зворотньому порядку
+);
+
+// 42 Доповни функцію sortByAscendingBalance(users) таким чином, щоб вона повертала масив користувачів, відсортований за зростанням їх балансу (властивість balance).
+
+const sortByAscendingBalance = users => {
+  const arr = [...users].sort((a, b) => a.balance - b.balance);
+  return arr;
+};
+// 43 Доповни функцію sortByDescendingFriendCount(users) таким чином, щоб вона повертала масив користувачів, відсортований за спаданням кількості їхніх друзів (властивість friends).
+
+const sortByDescendingFriendCount = users => {
+  const arr = [...users].sort((a, b) => b.friends.length - a.friends.length);
+  return arr;
+};
+
+// 44 Доповни функцію sortByName(users) таким чином, щоб вона повертала масив користувачів, відсортований за їх ім'ям (властивість name) в алфавітному порядку.
+
+const sortByName = users => {
+  const arr = [...users].sort((a, b) => a.name.localeCompare(b.name));
+  return arr;
+};
+
+//  45 Доповни код таким чином, щоб у змінній names вийшов масив імен авторів в алфавітному порядку, рейтинг книг яких більший за значення змінної MIN_BOOK_RATING.
+
+const books = [
+  {
+    title: 'The Last Kingdom',
+    author: 'Bernard Cornwell',
+    rating: 8.38,
+  },
+  {
+    title: 'Beside Still Waters',
+    author: 'Robert Sheckley',
+    rating: 8.51,
+  },
+  {
+    title: 'The Dream of a Ridiculous Man',
+    author: 'Fyodor Dostoevsky',
+    rating: 7.75,
+  },
+  { title: 'Redder Than Blood', author: 'Tanith Lee', rating: 7.94 },
+  {
+    title: 'The Dreams in the Witch House',
+    author: 'Howard Lovecraft',
+    rating: 8.67,
+  },
+];
+const MIN_BOOK_RATING = 8;
+
+const names = books
+  .filter(book => book.rating >= MIN_BOOK_RATING)
+  .map(book => book.author)
+  .sort((a, b) => a.localeCompare(b));
+
+// 46 Доповни функцію getNamesSortedByFriendCount(users) таким чином, щоб вона повертала масив імен користувачів, відсортований за зростанням кількості їхніх друзів (властивість friends).
+
+const getNamesSortedByFriendCount = users => {
+  return [...users]
+    .sort((a, b) => a.friends.length - b.friends.length)
+    .map(user => user.name);
+};
+
+// 47 Доповни функцію getSortedFriends(users) таким чином, щоб вона повертала масив унікальних імен друзів (властивість friends), відсортований за алфавітом.
+
+const getSortedFriends = users => {
+  const all = [...users].flatMap(user => user.friends);
+  const uniqueFriends = all.filter((friend, i, arr) => {
+    return arr.indexOf(friend) === i;
+  });
+  return uniqueFriends.sort((a, b) => a.localeCompare(b));
+};
+
+// 48 Доповни функцію getTotalBalanceByGender(users, gender) таким чином, щоб вона повертала загальний баланс користувачів (властивість balance), стать яких (властивість gender) збігається зі значенням параметра gender.
+
+const getTotalBalanceByGender = (users, gender) => {
+  return users
+    .filter(user => user.gender === gender)
+    .reduce((total, user) => total + user.balance, 0);
+};
