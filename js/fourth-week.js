@@ -615,6 +615,14 @@ const getSortedFriends = users => {
   return uniqueFriends.sort((a, b) => a.localeCompare(b));
 };
 
+// const getSortedFriends = users => {
+//   return users
+//     .flatMap(user => user.friends) // Об'єднуємо всіх друзів у один масив
+//     .filter((friend, i, arr) => arr.indexOf(friend) === i) // Видаляємо дублікати
+//     .sort((a, b) => a.localeCompare(b)); // Сортуємо за алфавітом
+
+// };
+
 // 48 Доповни функцію getTotalBalanceByGender(users, gender) таким чином, щоб вона повертала загальний баланс користувачів (властивість balance), стать яких (властивість gender) збігається зі значенням параметра gender.
 
 const getTotalBalanceByGender = (users, gender) => {
